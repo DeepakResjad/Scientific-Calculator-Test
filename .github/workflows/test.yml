@@ -22,4 +22,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest /mnt/data/test_scientific_calculator.py  # Adjust path if needed
+        pytest test_scientific_calculator.py  # Adjust path if needed
