@@ -19,7 +19,7 @@ def tan_function(x):
 def sqrt_function(x):
     validate_numeric_input(x)
     if x < 0:
-        raise ValueError("Cannot calculate square root")
+        raise ValueError("Cannot calculate square root of a negative number")
     return math.sqrt(x)
 
 def log_function(x):
@@ -32,30 +32,47 @@ def exp_function(x):
     validate_numeric_input(x)
     return math.exp(x)
 
-def asin_function(x):
-    validate_numeric_input(x)
-    if x < -1 or x > 1:
-        raise ValueError("Input out of domain (must be between -1 and 1)")
-    return math.degrees(math.asin(x))
+def display_menu():
+    print("Scientific Calculator")
+    print("=====================")
+    print("1. Sine (sin)")
+    print("2. Cosine (cos)")
+    print("3. Tangent (tan)")
+    print("4. Square Root (sqrt)")
+    print("5. Logarithm (log)")
+    print("6. Exponential (exp)")
+    print("7. Exit")
+    print("8. End")
 
-def acos_function(x):
-    validate_numeric_input(x)
-    if x < -1 or x > 1:
-        raise ValueError("Input out of domain (must be between -1 and 1)")
-    return math.degrees(math.acos(x))
+def main():
+    while True:
+        display_menu()
+        choice = input("Select an option (1-8): ")
+        
+        if choice in {"7", "8"}:  # Allow both "Exit" and "End" to terminate
+            print("Exiting calculator. Goodbye!")
+            break
+        
+        if choice not in {"1", "2", "3", "4", "5", "6"}:
+            print("Invalid option. Please try again.")
+            continue
 
-def atan_function(x):
-    validate_numeric_input(x)
-    return math.degrees(math.atan(x))
+        try:
+            num = float(input("Enter a number: "))
+            if choice == "1":
+                print(f"sin({num}) = {sin_function(num)}")
+            elif choice == "2":
+                print(f"cos({num}) = {cos_function(num)}")
+            elif choice == "3":
+                print(f"tan({num}) = {tan_function(num)}")
+            elif choice == "4":
+                print(f"sqrt({num}) = {sqrt_function(num)}")
+            elif choice == "5":
+                print(f"log({num}) = {log_function(num)}")
+            elif choice == "6":
+                print(f"exp({num}) = {exp_function(num)}")
+        except (ValueError, TypeError) as e:
+            print(f"Error: {e}")
 
-def sinh_function(x):
-    validate_numeric_input(x)
-    return math.sinh(x)
-
-def cosh_function(x):
-    validate_numeric_input(x)
-    return math.cosh(x)
-
-def tanh_function(x):
-    validate_numeric_input(x)
-    return math.tanh(x)
+if __name__ == "__main__":
+    main()
